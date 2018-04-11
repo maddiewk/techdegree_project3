@@ -6,7 +6,14 @@
 
 
 
+
+function check() {
   $("#other-title").hide();
-    if (document.getElementById("title").value == "other") {
+  var selected = $("#title").val();
+  const otherOption = $( "option[value='other']" );
+
+    if (selected == otherOption) {
       $("#other-title").show();
   }
+}
+check();
