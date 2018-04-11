@@ -4,12 +4,13 @@
 // hide the "other-title" text field
 // if "other" option is selected, show text field
 
+function showTextField() {
   $("#other-title").hide();
 
-function showTextField() {
   var selected = $("#title option:selected").val();
+  const otherOption = $("#title option[value='other']");
 
-    if (selected == "Other") {
+    if (selected == otherOption) {
       $("#other-title").show();
   }
 }
