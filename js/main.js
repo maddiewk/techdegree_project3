@@ -7,12 +7,14 @@
 function showTextField() {
   $("#other-title").hide();
 
-  var selected = $("#title option:selected").val();
-  const otherOption = $("#title option[value='other']");
-
-    if (selected == otherOption) {
-      $("#other-title").show();
+$("#title").click(function() {
+  var $selected = $("#title option:selected").text();
+  if( $selected === "Other") {
+    $("#other-title").show();
+  } else {
+    $("#other-title").hide();
   }
+  });
 }
 
 showTextField();
