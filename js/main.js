@@ -16,39 +16,30 @@ $("#title").change(function() {
 });
 
 // function to hide or display color menus depending on user's selection
-// $("#design").change(function() {
-//   const cornflowerBlue = $("#color option[value='cornflowerblue']");
-//   const slateGrey = $("#color option:eq(1)");
-//   const gold = $("#color option:eq(2)");
-//   const tomato = $("#color option:eq(3)");
-//   const steelBlue = $("#color option:eq(4)");
-//   const dimGrey = $("#color option:eq(5)");
-//
-//   var $selectColor = $("#design option:selected").text();
-//
-//   if( $selectColor === "Theme - JS Puns" ) {
-//     tomato.hide();
-//     steelBlue.hide();
-//     dimGrey.hide();
-//     cornflowerBlue.show();
-//     slateGrey.show();
-//     gold.show();
-//   } else if ( $selectColor === "Theme - I &#9829; JS" ) {
-//     cornflowerBlue.hide();
-//     slateGrey.hide();
-//     gold.hide();
-//     tomato.show();
-//     steelBlue.show();
-//     dimGrey.show();
-//   }
-//
-// });
+$("#design").change(function() {
+  const cornflowerBlue = $("#color option[value='cornflowerblue']");
+  const slateGrey = $("#color option[value='darkslategrey']");
+  const gold = $("#color option[value='gold']");
+  const tomato = $("#color option[value='tomato']");
+  const steelBlue = $("#color option[value='steelblue']");
+  const dimGrey = $("#color option[value='dimgrey']");
 
+  var $selectColor = $("#design option:selected").text();
 
+  if( $selectColor === "Theme - JS Puns" ) {
+    tomato.hide();
+    steelBlue.hide();
+    dimGrey.hide();
+    cornflowerBlue.show();
+    slateGrey.show();
+    gold.show();
+  } else if ( $selectColor === "Theme - I &#9829; JS" ) {
+    cornflowerBlue.hide();
+    slateGrey.hide();
+    gold.hide();
+    tomato.show();
+    steelBlue.show();
+    dimGrey.show();
+  }
 
-
-
-
-$("#color").each(function(index) {
-  console.log(index + ": " + $(this).text());
 });
