@@ -23,23 +23,33 @@ $("#design").change(function() {
   const tomato = $("#color option[value='tomato']");
   const steelBlue = $("#color option[value='steelblue']");
   const dimGrey = $("#color option[value='dimgrey']");
+  const puns = $("#design option[value='js puns']");
+  const heart = $("#design option[value='heart js']");
 
   var $selectColor = $("#design option:selected").text();
 
-  if( $selectColor === "Theme - JS Puns" ) {
+  if( $selectColor === puns.text() ) {
     tomato.hide();
     steelBlue.hide();
     dimGrey.hide();
     cornflowerBlue.show();
     slateGrey.show();
     gold.show();
-  } else if ( $selectColor === "Theme - I &#9829; JS" ) {
-    cornflowerBlue.hide();
-    slateGrey.hide();
-    gold.hide();
+  }
+  if ($selectColor === heart.text() ) {
     tomato.show();
     steelBlue.show();
     dimGrey.show();
+    cornflowerBlue.hide();
+    slateGrey.hide();
+    gold.hide();
   }
-
+  if ($selectColor === "Select Theme") {
+    tomato.show();
+    steelBlue.show();
+    dimGrey.show();
+    cornflowerBlue.show();
+    slateGrey.show();
+    gold.show();
+  }
 });
