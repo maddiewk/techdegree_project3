@@ -53,3 +53,39 @@ $("#design").change(function() {
     gold.show();
   }
 });
+
+
+
+
+
+
+
+// clear color menus first?
+
+$("#color option[value='cornflowerblue']").remove();
+$("#color option[value='darkslategrey']").remove();
+$("#color option[value='gold']").remove();
+$("#color option[value='tomato']").remove();
+$("#color option[value='steelblue']").remove();
+$("#color option[value='dimgrey']").remove();
+$("#design").change(function() {
+const puns = $("#design option[value='js puns']");
+const heart = $("#design option[value='heart js']");
+
+var $selectColor = $("#design option:selected").text();
+
+if( $selectColor === puns.text() ) {
+  $("#color").append("<option value='cornflowerblue'>Cornflower Blue</option>");
+  $("#color").append("<option value='darkslategrey'>Dark Slate Grey</option>");
+  $("#color").append("<option value='gold'>Gold</option>");
+}
+if ($selectColor === heart.text() ) {
+  $("#color").append("<option value='tomato'>Tomato</option>");
+  $("#color").append("<option value='steelblue'>Steel Blue</option>");
+  $("#color").append("<option value='dimgrey'>Dim Grey</option>");
+}
+if ($selectColor === "Select Theme") {
+  $("#color-js-puns").hide();
+
+  }
+});
