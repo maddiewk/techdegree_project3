@@ -14,3 +14,8 @@ $("#title").change(function() {
       $("#other-title").hide();
   }
 });
+
+// function to hide or display color menus depending on user's selection
+function displayColorMenu() {
+
+}
