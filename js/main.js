@@ -54,12 +54,15 @@ $("#design").change(function() {
 
 const $jsFrameworks = $(".activities input[name='js-frameworks']");
 const $express = $(".activities input[name='express']");
+const $library = $(".activities input[name='js-libs']");
+const $node = $(".activities input[name='node']");
 
 //code to disable specific checkboxes
 // $jsFrameworks.attr("disabled", true);
 
 $(".activities :checkbox").change(function() {
 
+  // disable/enable options 2 and 4 when checked
     if ( $jsFrameworks.prop("checked") === true ) {
       $express.attr("disabled", true);
     } else {
@@ -69,6 +72,17 @@ $(".activities :checkbox").change(function() {
       $jsFrameworks.attr("disabled", true);
     } else {
       $jsFrameworks.attr("disabled", false);
+    }
+    // disable/enable options 3 and 5 when checked
+    if( $library.prop("checked") === true ) {
+      $node.attr("disabled", true);
+    } else {
+      $node.attr("disabled", false);
+    }
+    if ( $node.prop("checked") === true ) {
+      $library.attr("disabled", true);
+    } else {
+      $library.attr("disabled", false);
     }
 
   });
