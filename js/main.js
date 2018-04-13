@@ -56,15 +56,18 @@ $("#design").change(function() {
 // create a new html element and keep a running total of activities
 function calculateTotal() {
   var totalPayment;
-  $(".activities").append("<p>Total: </p>");
-}
-// create variables for items that conflict with each other
-//
+  const twoHundred = $(".activities input[name='all']").text();
+  const oneHundred = $(".activities input[name='npm']").text();
 
-$(".activities input").change(function (index) {
-  if(this.checked==true) {
-    console.log("Yay");
-  } else {
-    console.log("Oops");
-  }
-});
+  $(".activities input").change(function (index) {
+    if(this.checked==true && this.checked==twoHundred) {
+      totalPayment += 200;
+    } else {
+      totalPayment += 100;
+    }
+    $(".activities").append("<p>Total: $" + totalPayment + "</p>");
+  });
+
+}
+
+calculateTotal();
