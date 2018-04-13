@@ -48,9 +48,17 @@ $("#design").change(function() {
   }
 });
 
+
+
+
+
 // disable or enable activities if they conflict with each other as the user selects and deselects
 // create a new <legend> element and keep a running total of activities
+$(".activities").append("<legend>Total: </legend>");
 
 // create variables for items that conflict with each other
-const jsFrameworks = $(".activities input[name='js-frameworks']");
-console.log(jsFrameworks);
+
+
+$(".activities input").each(function (index) {
+
+});
