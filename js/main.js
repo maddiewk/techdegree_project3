@@ -63,10 +63,11 @@ const $express = $(".activities input[name='express']");
 // $jsFrameworks.attr("disabled", true);
 
 $(".activities :checkbox").change(function() {
-  if ( $jsFrameworks.attr("checked", true) ) {
-    $express.attr("disabled", true);
-  }
-  if ($express.attr("checked", true)) {
-    $jsFrameworks.attr("disabled", true);
-  }
-});
+
+    if ( $jsFrameworks.attr("checked", true) ) {
+      $express.attr("disabled", true);
+    }
+    if ($express.attr("checked", true)) {
+      $jsFrameworks.attr("disabled", true);
+    }
+  });
