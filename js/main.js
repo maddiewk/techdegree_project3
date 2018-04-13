@@ -14,59 +14,35 @@ $("#title").change(function() {
 });
 
 // function to hide or display color menus depending on user's selection
-//   $("#color option[value='cornflowerblue']").remove();
-//   $("#color option[value='darkslategrey']").remove();
-//   $("#color option[value='gold']").remove();
-//   $("#color option[value='tomato']").remove();
-//   $("#color option[value='steelblue']").remove();
-//   $("#color option[value='dimgrey']").remove();
-//   $("#color").append("<option value='select'>Please select a T-shirt theme</option>");
-//
-// $("#design").change(function() {
-//
-//   const puns = $("#design option[value='js puns']").text();
-//   const heart = $("#design option[value='heart js']").text();
-//   var $selectColor = $("#design option:selected").text();
-//   const message = "<option value='select'>Please select a T-shirt theme</option>";
-//     $("#color").append(message);
-//
-//   $("#color").children().remove();
-//
-//   if( $selectColor === puns ) {
-//     $("#color").append("<option value='cornflowerblue'>Cornflower Blue</option>");
-//     $("#color").append("<option value='darkslategrey'>Slate Grey</option>");
-//     $("#color").append("<option value='gold'>Gold</option>");
-//   }
-//   if ($selectColor === heart ) {
-//     $("#color").append("<option value='tomato'>Tomato</option>");
-//     $("#color").append("<option value='steelblue'>Steel Blue</option>");
-//     $("#color").append("<option value='dimgrey'>Dim Grey</option>");
-//   }
-//   if ($selectColor === "Select Theme") {
-//     $("#color").append(message);
-//   }
-//
-// });
-$("#color").hide();
+  $("#color option[value='cornflowerblue']").remove();
+  $("#color option[value='darkslategrey']").remove();
+  $("#color option[value='gold']").remove();
+  $("#color option[value='tomato']").remove();
+  $("#color option[value='steelblue']").remove();
+  $("#color option[value='dimgrey']").remove();
+  $("#color").append("<option value='select'>Please select a T-shirt theme</option>");
 
 $("#design").change(function() {
 
   const puns = $("#design option[value='js puns']").text();
   const heart = $("#design option[value='heart js']").text();
   var $selectColor = $("#design option:selected").text();
-  const jsPunsColors = $("#color option[value='cornflowerblue', 'darkslategrey', 'gold']");
-  const loveJS = $("#color option[value='tomato', 'steelblue', 'dimgrey']");
+  const message = "<option value='select'>Please select a T-shirt theme</option>";
 
-if( $(this).selected === puns ) {
-  $("#color").show();
-  loveJS.hide();
-}
-if ($selectColor === heart ) {
-  $("#color").show();
-  jsPunsColors.hide();
-}
-if ($selectColor === "Select Theme") {
-  $("#color").hide();
-}
+  $("#color").children().remove();
+
+  if( $selectColor === puns ) {
+    $("#color").append("<option value='cornflowerblue'>Cornflower Blue</option>");
+    $("#color").append("<option value='darkslategrey'>Slate Grey</option>");
+    $("#color").append("<option value='gold'>Gold</option>");
+  }
+  if ($selectColor === heart ) {
+    $("#color").append("<option value='tomato'>Tomato</option>");
+    $("#color").append("<option value='steelblue'>Steel Blue</option>");
+    $("#color").append("<option value='dimgrey'>Dim Grey</option>");
+  }
+  if ($selectColor === "Select Theme") {
+    $("#color").append(message);
+  }
 
 });
