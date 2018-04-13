@@ -55,19 +55,31 @@ $("#design").change(function() {
 // disable or enable activities if they conflict with each other as the user selects and deselects
 // create a new html element and keep a running total of activities
 
-const $jsFrameworks = $(".activities input[name='js-frameworks']");
-const $express = $(".activities input[name='express']");
+// const $jsFrameworks = $(".activities input[name='js-frameworks']");
+// const $express = $(".activities input[name='express']");
+//
+// //code to disable specific checkboxes
+// // $jsFrameworks.attr("disabled", true);
+//
+// $(".activities :checkbox").click(function() {
+//
+//     if ( $jsFrameworks.attr("checked", true) ) {
+//       $express.attr("disabled", true);
+//     } else {
+//       $express.attr("disabled", false);
+//     }
+//
+//   });
 
-//code to disable specific checkboxes
 
-// $jsFrameworks.attr("disabled", true);
+// javaScript event listener
+const fieldset = document.querySelector(".activities");
 
-$(".activities :checkbox").change(function() {
+fieldset.addEventListener("change", (event) => {
+  const checkbox = event.target;
+  const checked = checkbox.checked;
 
-    if ( $jsFrameworks.attr("checked", true) ) {
-      $express.attr("disabled", true);
-    }
-    if ($express.attr("checked", true)) {
-      $jsFrameworks.attr("disabled", true);
-    }
-  });
+  if (checked) {
+    alert("Hello!");
+  } 
+});
