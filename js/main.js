@@ -49,18 +49,14 @@ $("#design").change(function() {
 });
 
 
-// disable or enable activities if they conflict with each other as the user selects and deselects
-// create a new html element and keep a running total of activities
+// function to disable or enable activities if they conflict with each other as the user selects and deselects
+function disableCheckbox() {
+  const $jsFrameworks = $(".activities input[name='js-frameworks']");
+  const $express = $(".activities input[name='express']");
+  const $library = $(".activities input[name='js-libs']");
+  const $node = $(".activities input[name='node']");
 
-const $jsFrameworks = $(".activities input[name='js-frameworks']");
-const $express = $(".activities input[name='express']");
-const $library = $(".activities input[name='js-libs']");
-const $node = $(".activities input[name='node']");
-
-//code to disable specific checkboxes
-// $jsFrameworks.attr("disabled", true);
-
-$(".activities :checkbox").change(function() {
+  $(".activities :checkbox").change(function() {
 
   // disable/enable options 2 and 4 when checked
     if ( $jsFrameworks.prop("checked") === true ) {
@@ -84,5 +80,7 @@ $(".activities :checkbox").change(function() {
     } else {
       $library.attr("disabled", false);
     }
-
   });
+}
+
+disableCheckbox();
