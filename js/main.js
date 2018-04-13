@@ -84,3 +84,11 @@ function disableCheckbox() {
 }
 
 disableCheckbox();
+
+
+// create a new html element and keep a running total of activities chosen
+
+function addTotal() {
+
+  
+}
