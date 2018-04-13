@@ -46,5 +46,7 @@ $("#design").change(function() {
   if ($selectColor === "Select Theme") {
     $("#colors-js-puns").hide();
   }
-
 });
+
+// disable or enable activities if they conflict with each other as the user selects and deselects
+// create a new <legend> element and keep a running total of activities
