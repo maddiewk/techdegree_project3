@@ -54,20 +54,3 @@ $("#design").change(function() {
 
 // disable or enable activities if they conflict with each other as the user selects and deselects
 // create a new html element and keep a running total of activities
-function calculateTotal() {
-  var totalPayment;
-  const twoHundred = $(".activities input[name='all']").text();
-  const oneHundred = $(".activities input[name='npm']").text();
-
-  $(".activities input").change(function (index) {
-    if(this.checked==true && this.checked==twoHundred) {
-      totalPayment += 200;
-    } else {
-      totalPayment += 100;
-    }
-    $(".activities").append("<p>Total: $" + totalPayment + "</p>");
-  });
-
-}
-
-calculateTotal();
