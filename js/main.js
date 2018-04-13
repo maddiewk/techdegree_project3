@@ -55,8 +55,12 @@ $("#design").change(function() {
 // disable or enable activities if they conflict with each other as the user selects and deselects
 // create a new html element and keep a running total of activities
 
+const $jsFrameworks = $(".activities input[name='js-frameworks']");
 const $express = $(".activities input[name='express']");
+
+//code to disable specific checkboxes
 $express.attr("disabled", true);
+$jsFrameworks.attr("disabled", true);
 
 $(".activities :checkbox").change(function() {
 
