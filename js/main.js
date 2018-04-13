@@ -53,12 +53,19 @@ $("#design").change(function() {
 
 
 // disable or enable activities if they conflict with each other as the user selects and deselects
-// create a new <legend> element and keep a running total of activities
-$(".activities").append("<legend>Total: </legend>");
+// create a new html element and keep a running total of activities
+var totalPayment;
+
+
+$(".activities").append("<p>Total: </p>");
 
 // create variables for items that conflict with each other
+//
 
-
-$(".activities input").each(function (index) {
-
+$(".activities input").change(function (index) {
+  if(this.checked==true) {
+    console.log("Yay");
+  } else {
+    console.log("Oops");
+  }
 });
