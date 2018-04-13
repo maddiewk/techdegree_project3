@@ -49,37 +49,39 @@ $("#design").change(function() {
 });
 
 
-
-
-
 // disable or enable activities if they conflict with each other as the user selects and deselects
 // create a new html element and keep a running total of activities
 
-// const $jsFrameworks = $(".activities input[name='js-frameworks']");
-// const $express = $(".activities input[name='express']");
-//
-// //code to disable specific checkboxes
-// // $jsFrameworks.attr("disabled", true);
-//
-// $(".activities :checkbox").click(function() {
-//
-//     if ( $jsFrameworks.attr("checked", true) ) {
-//       $express.attr("disabled", true);
-//     } else {
-//       $express.attr("disabled", false);
-//     }
-//
-//   });
+const $jsFrameworks = $(".activities input[name='js-frameworks']");
+const $express = $(".activities input[name='express']");
+
+//code to disable specific checkboxes
+// $jsFrameworks.attr("disabled", true);
+
+$(".activities :checkbox").change(function() {
+
+    if ( $jsFrameworks.prop("checked") === true ) {
+      $express.attr("disabled", true);
+    } else {
+      $express.attr("disabled", false);
+    }
+    if ( $express.prop("checked") === true ) {
+      $jsFrameworks.attr("disabled", true);
+    } else {
+      $jsFrameworks.attr("disabled", false);
+    }
+
+  });
 
 
 // javaScript event listener
-const fieldset = document.querySelector(".activities");
-
-fieldset.addEventListener("change", (event) => {
-  const checkbox = event.target;
-  const checked = checkbox.checked;
-
-  if (checked) {
-    alert("Hello!");
-  } 
-});
+// const fieldset = document.querySelector(".activities");
+//
+// fieldset.addEventListener("change", (event) => {
+//   const checkbox = event.target;
+//   const checked = checkbox.checked;
+//
+//   if (checked) {
+//     alert("Hello!");
+//   }
+// });
