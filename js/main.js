@@ -2,10 +2,8 @@
 document.getElementById("name").focus();
 
 // hide the "other-title" text field
-// if "other" option is selected, show text field
-
 $("#other-title").hide();
-
+// if "other" option is selected, show text field
 $("#title").change(function() {
   var $selected = $("#title option:selected").text();
     if( $selected === "Other") {
@@ -16,7 +14,6 @@ $("#title").change(function() {
 });
 
 // function to hide or display color menus depending on user's selection
-
   $("#color option[value='cornflowerblue']").remove();
   $("#color option[value='darkslategrey']").remove();
   $("#color option[value='gold']").remove();
@@ -34,8 +31,6 @@ $("#design").change(function() {
     $("#color").append(message);
 
   $("#color").children().remove();
-
-
 
   if( $selectColor === puns ) {
     $("#color").append("<option value='cornflowerblue'>Cornflower Blue</option>");
