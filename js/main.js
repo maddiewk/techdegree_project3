@@ -59,10 +59,14 @@ const $jsFrameworks = $(".activities input[name='js-frameworks']");
 const $express = $(".activities input[name='express']");
 
 //code to disable specific checkboxes
-$express.attr("disabled", true);
-$jsFrameworks.attr("disabled", true);
+
+// $jsFrameworks.attr("disabled", true);
 
 $(".activities :checkbox").change(function() {
-
-      // $(".activities input[name='express']").attr("disabled", true);
+  if ( $jsFrameworks.attr("checked", true) ) {
+    $express.attr("disabled", true);
+  }
+  if ($express.attr("checked", true)) {
+    $jsFrameworks.attr("disabled", true);
+  }
 });
