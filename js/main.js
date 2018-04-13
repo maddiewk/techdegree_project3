@@ -54,11 +54,10 @@ $("#design").change(function() {
 
 // disable or enable activities if they conflict with each other as the user selects and deselects
 // create a new html element and keep a running total of activities
-var totalPayment;
-
-
-$(".activities").append("<p>Total: </p>");
-
+function calculateTotal() {
+  var totalPayment;
+  $(".activities").append("<p>Total: </p>");
+}
 // create variables for items that conflict with each other
 //
 
