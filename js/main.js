@@ -61,6 +61,7 @@ function disableCheckbox() {
   // disable/enable options 2 and 4 when checked
     if ( $jsFrameworks.prop("checked") === true ) {
       $express.attr("disabled", true);
+
     } else {
       $express.attr("disabled", false);
     }
@@ -90,5 +91,5 @@ disableCheckbox();
 
 function addTotal() {
 
-  
+
 }
