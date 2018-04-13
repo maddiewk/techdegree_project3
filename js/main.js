@@ -72,16 +72,3 @@ $(".activities :checkbox").change(function() {
     }
 
   });
-
-
-// javaScript event listener
-// const fieldset = document.querySelector(".activities");
-//
-// fieldset.addEventListener("change", (event) => {
-//   const checkbox = event.target;
-//   const checked = checkbox.checked;
-//
-//   if (checked) {
-//     alert("Hello!");
-//   }
-// });
