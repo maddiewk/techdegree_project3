@@ -65,27 +65,20 @@ function disableCheckbox() {
     } else {
       $(".activities label:eq(4)").prop("disabled", false).css("color", "black");
     }
-//     if ( $express.prop("checked") === true ) {
-//       $jsFrameworks.prop("disabled", true);
-//     } else {
-//       $jsFrameworks.prop("disabled", false);
-//     }
-// //  disable/enable options 3 and 5 when either is checked
-//     if( $library.prop("checked") === true ) {
-//       $node.prop("disabled", true);
-//     } else {
-//       $node.prop("disabled", false);
-//     }
-//     if ( $node.prop("checked") === true ) {
-//       $library.prop("disabled", true);
-//     } else {
-//       $library.prop("disabled", false);
-//     }
+    if ( $(".activities input:eq(3)").prop("checked") === true ) {
+      $(".activities label:eq(1)").prop("disabled", true).css("color", "grey");
+    } else {
+      $(".activities label:eq(1)").prop("disabled", false).css("color", "black");
+    }
 
-// change text color of any disabled label element
-// if ( $("input:eq(1):disabled") ) {
-//   $(".activities label:eq(3)").css("color", "grey");
-// }
+    if ( $(".activities input:eq(4)").prop("checked") === true ) {
+      $(".activities label:eq(2)").prop("disabled", true).css("color", "grey");
+    } else {
+      $(".activities label:eq(2)").prop("disabled", false).css("color", "black");
+    }
+
+
+
   });
 }
 
