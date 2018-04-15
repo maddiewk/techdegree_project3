@@ -52,36 +52,40 @@ $("#design").change(function() {
 // $("input:disabled").css("background", "red");
 // function to disable or enable activities if they conflict with each other as the user selects and deselects
 function disableCheckbox() {
-  const $jsFrameworks = $(".activities input[name='js-frameworks']");
-  const $express = $(".activities input[name='express']");
-  const $library = $(".activities input[name='js-libs']");
-  const $node = $(".activities input[name='node']");
+  // const $jsFrameworks = $(".activities input[name='js-frameworks']");
+  // const $express = $(".activities input[name='express']");
+  // const $library = $(".activities input[name='js-libs']");
+  // const $node = $(".activities input[name='node']");
 
   $(".activities :checkbox").change(function() {
 //
 // disable/enable options 2 and 4 when either is checked
-    if ( $jsFrameworks.prop("checked") === true ) {
-      $express.prop("disabled", true);
+    if ( $("input:eq(1)").prop("checked") === true ) {
+      $(".activities label:eq(3)").prop("disabled", true).css("color", "grey");
     } else {
-      $express.prop("disabled", false);
+      $(".activities label:eq(3)").prop("disabled", false).css("color", "black");
     }
-    if ( $express.prop("checked") === true ) {
-      $jsFrameworks.prop("disabled", true);
-    } else {
-      $jsFrameworks.prop("disabled", false);
-    }
-//  disable/enable options 3 and 5 when either is checked
-    if( $library.prop("checked") === true ) {
-      $node.prop("disabled", true);
-    } else {
-      $node.prop("disabled", false);
-    }
-    if ( $node.prop("checked") === true ) {
-      $library.prop("disabled", true);
-    } else {
-      $library.prop("disabled", false);
-    }
+//     if ( $express.prop("checked") === true ) {
+//       $jsFrameworks.prop("disabled", true);
+//     } else {
+//       $jsFrameworks.prop("disabled", false);
+//     }
+// //  disable/enable options 3 and 5 when either is checked
+//     if( $library.prop("checked") === true ) {
+//       $node.prop("disabled", true);
+//     } else {
+//       $node.prop("disabled", false);
+//     }
+//     if ( $node.prop("checked") === true ) {
+//       $library.prop("disabled", true);
+//     } else {
+//       $library.prop("disabled", false);
+//     }
 
+// change text color of any disabled label element
+// if ( $("input:eq(1):disabled") ) {
+//   $(".activities label:eq(3)").css("color", "grey");
+// }
   });
 }
 
