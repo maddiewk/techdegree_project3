@@ -49,18 +49,20 @@ $("#design").change(function() {
 });
 
 
+
+
 // function to disable or enable activities if they conflict with each other as the user selects and deselects
 function disableCheckbox() {
   const $jsFrameworks = $(".activities input[name='js-frameworks']");
   const $express = $(".activities input[name='express']");
   const $library = $(".activities input[name='js-libs']");
   const $node = $(".activities input[name='node']");
-  $(".activities :checkbox").change(function() {
 
+  $(".activities :checkbox").change(function() {
   // disable/enable options 2 and 4 when either is checked
     if ( $jsFrameworks.prop("checked") === true ) {
       $express.attr("disabled", true);
-
+      $express
     } else {
       $express.attr("disabled", false);
     }
