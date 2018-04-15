@@ -98,18 +98,23 @@ $("#design").change(function() {
 
 function addTotal() {
 // create <legend> element and append to the fieldset
-  $(".activities").add("<legend></legend>");
+// update the running total with totalCost variable
+let totalCost;
+const twoHundred = $(".activities input:eq(0)");
+const oneHundred = $(".activities input:eq(1)");
 
   $(".activities :checkbox").change(function() {
     // variables for this function
-    let totalCost;
-    const twoHundred = $(".activities input:eq(0)");
-    const oneHundred = $(".activities input:eq(1)");
-
-
     // each time a box is changed (selected or deselected) add or subtract numbers
+    if ( twoHundred.is(":checked") === true ) {
+      totalCost += 200;
+      $(".activities").append(totalCost);
+    } else if (twoHundred.is(":checked") === false ) {
+      totalCost -= 200;
+    }
 
   });
 
+  $(".activities legend").add("<p></p>");
 }
 addTotal();
