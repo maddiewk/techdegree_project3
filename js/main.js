@@ -55,29 +55,26 @@ function disableCheckbox() {
   $(".activities :checkbox").change(function() {
 //
 // disable/enable options 2 and 4 when either is checked
-    if ( $(".activities input:eq(1)").prop("checked") === true ) {
+    if ( $(".activities input:eq(1)").is(":checked") === true ) {
       $(".activities label:eq(3)").prop("disabled", true).css("color", "grey");
     } else {
       $(".activities label:eq(3)").prop("disabled", false).css("color", "black");
     }
-    if ( $(".activities input:eq(2)").prop("checked") === true ) {
+    if ( $(".activities input:eq(2)").is(":checked") === true ) {
       $(".activities label:eq(4)").prop("disabled", true).css("color", "grey");
     } else {
       $(".activities label:eq(4)").prop("disabled", false).css("color", "black");
     }
-    if ( $(".activities input:eq(3)").prop("checked") === true ) {
+    if ( $(".activities input:eq(3)").is(":checked") === true ) {
       $(".activities label:eq(1)").prop("disabled", true).css("color", "grey");
     } else {
       $(".activities label:eq(1)").prop("disabled", false).css("color", "black");
     }
-
-    if ( $(".activities input:eq(4)").prop("checked") === true ) {
+    if ( $(".activities input:eq(4)").is(":checked") === true ) {
       $(".activities label:eq(2)").prop("disabled", true).css("color", "grey");
     } else {
       $(".activities label:eq(2)").prop("disabled", false).css("color", "black");
     }
-
-
 
   });
 }
