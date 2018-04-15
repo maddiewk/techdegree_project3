@@ -57,6 +57,13 @@ function disableCheckbox() {
   const $library = $(".activities input[name='js-libs']");
   const $node = $(".activities input[name='node']");
 
+
+$(".activities label").each (function(index, text) {
+  console.log(index + ": " + $(this).text());
+});
+
+
+
   $(".activities :checkbox").change(function() {
 
 // disable/enable options 2 and 4 when either is checked
