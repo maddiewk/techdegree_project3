@@ -97,6 +97,8 @@ $("#design").change(function() {
 // create a new html element and keep a running total of activities chosen
 
 function addTotal() {
-
+  $(".activities :checkbox").change(function() {
+    // create <legend> element and append to the fieldset
+  });
 
 }
