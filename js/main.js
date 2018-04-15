@@ -60,7 +60,7 @@ function disableCheckbox() {
   $(".activities :checkbox").change(function() {
 //
 // disable/enable options 2 and 4 when either is checked
-    if ( $("input:eq(1)").prop("checked") === true ) {
+    if ( $(".activities input:eq(1)").prop("checked") === true ) {
       $(".activities label:eq(3)").prop("disabled", true).css("color", "grey");
     } else {
       $(".activities label:eq(3)").prop("disabled", false).css("color", "black");
@@ -97,11 +97,3 @@ function addTotal() {
 
 
 }
-
-
-
-
-//
-// $(".activities label").each (function(index, text) {
-//   console.log(index + $(this).text());
-// });
