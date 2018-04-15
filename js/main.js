@@ -52,40 +52,40 @@ $("#design").change(function() {
 
 
 // function to disable or enable activities if they conflict with each other as the user selects and deselects
-function disableCheckbox() {
-  const $jsFrameworks = $(".activities input[name='js-frameworks']");
-  const $express = $(".activities input[name='express']");
-  const $library = $(".activities input[name='js-libs']");
-  const $node = $(".activities input[name='node']");
-
-  $(".activities :checkbox").change(function() {
-  // disable/enable options 2 and 4 when either is checked
-    if ( $jsFrameworks.prop("checked") === true ) {
-      $express.attr("disabled", true);
-      $express
-    } else {
-      $express.attr("disabled", false);
-    }
-    if ( $express.prop("checked") === true ) {
-      $jsFrameworks.attr("disabled", true);
-    } else {
-      $jsFrameworks.attr("disabled", false);
-    }
-    // disable/enable options 3 and 5 when either is checked
-    if( $library.prop("checked") === true ) {
-      $node.attr("disabled", true);
-    } else {
-      $node.attr("disabled", false);
-    }
-    if ( $node.prop("checked") === true ) {
-      $library.attr("disabled", true);
-    } else {
-      $library.attr("disabled", false);
-    }
-  });
-}
-
-disableCheckbox();
+// function disableCheckbox() {
+//   const $jsFrameworks = $(".activities input[name='js-frameworks']");
+//   const $express = $(".activities input[name='express']");
+//   const $library = $(".activities input[name='js-libs']");
+//   const $node = $(".activities input[name='node']");
+//
+//   $(".activities :checkbox").change(function() {
+//   // disable/enable options 2 and 4 when either is checked
+//     if ( $jsFrameworks.prop("checked") === true ) {
+//       $express.attr("disabled", true);
+//       $express
+//     } else {
+//       $express.attr("disabled", false);
+//     }
+//     if ( $express.prop("checked") === true ) {
+//       $jsFrameworks.attr("disabled", true);
+//     } else {
+//       $jsFrameworks.attr("disabled", false);
+//     }
+//     // disable/enable options 3 and 5 when either is checked
+//     if( $library.prop("checked") === true ) {
+//       $node.attr("disabled", true);
+//     } else {
+//       $node.attr("disabled", false);
+//     }
+//     if ( $node.prop("checked") === true ) {
+//       $library.attr("disabled", true);
+//     } else {
+//       $library.attr("disabled", false);
+//     }
+//   });
+// }
+//
+// disableCheckbox();
 
 
 // create a new html element and keep a running total of activities chosen
@@ -94,3 +94,59 @@ function addTotal() {
 
 
 }
+
+
+
+
+
+
+
+
+
+function disableCheckbox() {
+  const $jsFrameworks = $(".activities input[name='js-frameworks']");
+  const $express = $(".activities input[name='express']");
+  const $library = $(".activities input[name='js-libs']");
+  const $node = $(".activities input[name='node']");
+
+    $(".activities :checkbox").change(function() {
+      $(".activities").each(function () {
+        if ( $(this).prop("checked") === true) {
+          $(this).attr("disabled", true);
+        }
+      })
+  });
+}
+disableCheckbox();
+
+//   const $jsFrameworks = $(".activities input[name='js-frameworks']");
+//   const $express = $(".activities input[name='express']");
+//   const $library = $(".activities input[name='js-libs']");
+//   const $node = $(".activities input[name='node']");
+//
+//   $(".activities :checkbox").change(function() {
+//   // disable/enable options 2 and 4 when either is checked
+//     if ( $jsFrameworks.prop("checked") === true ) {
+//       $express.attr("disabled", true);
+//       $express
+//     } else {
+//       $express.attr("disabled", false);
+//     }
+//     if ( $express.prop("checked") === true ) {
+//       $jsFrameworks.attr("disabled", true);
+//     } else {
+//       $jsFrameworks.attr("disabled", false);
+//     }
+//     // disable/enable options 3 and 5 when either is checked
+//     if( $library.prop("checked") === true ) {
+//       $node.attr("disabled", true);
+//     } else {
+//       $node.attr("disabled", false);
+//     }
+//     if ( $node.prop("checked") === true ) {
+//       $library.attr("disabled", true);
+//     } else {
+//       $library.attr("disabled", false);
+//     }
+//   });
+// }
