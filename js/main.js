@@ -50,7 +50,6 @@ $("#design").change(function() {
 
 
 
-
 // function to disable or enable activities if they conflict with each other as the user selects and deselects
 function disableCheckbox() {
   const $jsFrameworks = $(".activities input[name='js-frameworks']");
@@ -58,28 +57,31 @@ function disableCheckbox() {
   const $library = $(".activities input[name='js-libs']");
   const $node = $(".activities input[name='node']");
 
+
   $(".activities :checkbox").change(function() {
+
 //   // disable/enable options 2 and 4 when either is checked
     if ( $jsFrameworks.prop("checked") === true ) {
-      $express.attr("disabled", true);
+      $express.prop("disabled", true);
+      $("input:disabled").css("background", "red");
     } else {
-      $express.attr("disabled", false);
+      $express.prop("disabled", false);
     }
     if ( $express.prop("checked") === true ) {
-      $jsFrameworks.attr("disabled", true);
+      $jsFrameworks.prop("disabled", true);
     } else {
-      $jsFrameworks.attr("disabled", false);
+      $jsFrameworks.prop("disabled", false);
     }
 //     // disable/enable options 3 and 5 when either is checked
     if( $library.prop("checked") === true ) {
-      $node.attr("disabled", true);
+      $node.prop("disabled", true);
     } else {
-      $node.attr("disabled", false);
+      $node.prop("disabled", false);
     }
     if ( $node.prop("checked") === true ) {
-      $library.attr("disabled", true);
+      $library.prop("disabled", true);
     } else {
-      $library.attr("disabled", false);
+      $library.prop("disabled", false);
     }
   });
 }
