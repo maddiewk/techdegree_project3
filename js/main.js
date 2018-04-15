@@ -50,36 +50,42 @@ $("#design").change(function() {
 
 
 // function to disable or enable activities if they conflict with each other as the user selects and deselects
-function disableCheckbox() {
 
   $(".activities :checkbox").change(function() {
-//
+    const jsFrameworksBox = $(".activities input:eq(1)");
+    const jsFrameworksText = $(".activities label:eq(1)");
+    const expressBox = $(".activities input:eq(3)");
+    const expressText = $(".activities label:eq(3)");
+    const librariesBox = $(".activities input:eq(2)");
+    const librariesText= $(".activities label:eq(2)");
+    const nodeBox = $(".activities input:eq(4)");
+    const nodeText = $(".activities label:eq(4)");
+
 // disable/enable options 2 and 4 when either is checked
     if ( $(".activities input:eq(1)").is(":checked") === true ) {
-      $(".activities label:eq(3)").prop("disabled", true).css("color", "grey");
+      $(".activities input:eq(3)").prop("disabled", true)
+      $(".activities label:eq(3)").css("color", "grey");
     } else {
       $(".activities label:eq(3)").prop("disabled", false).css("color", "black");
-    }
-    if ( $(".activities input:eq(2)").is(":checked") === true ) {
-      $(".activities label:eq(4)").prop("disabled", true).css("color", "grey");
-    } else {
-      $(".activities label:eq(4)").prop("disabled", false).css("color", "black");
     }
     if ( $(".activities input:eq(3)").is(":checked") === true ) {
       $(".activities label:eq(1)").prop("disabled", true).css("color", "grey");
     } else {
       $(".activities label:eq(1)").prop("disabled", false).css("color", "black");
     }
+// disable/enable options 3 and 5 when either is checked
+    if ( $(".activities input:eq(2)").is(":checked") === true ) {
+      $(".activities label:eq(4)").prop("disabled", true).css("color", "grey");
+    } else {
+      $(".activities label:eq(4)").prop("disabled", false).css("color", "black");
+    }
     if ( $(".activities input:eq(4)").is(":checked") === true ) {
       $(".activities label:eq(2)").prop("disabled", true).css("color", "grey");
     } else {
       $(".activities label:eq(2)").prop("disabled", false).css("color", "black");
     }
-
   });
-}
 
-disableCheckbox();
 
 // create a new html element and keep a running total of activities chosen
 
