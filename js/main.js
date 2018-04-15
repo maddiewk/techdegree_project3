@@ -62,27 +62,34 @@ $("#design").change(function() {
     const nodeText = $(".activities label:eq(4)");
 
 // disable/enable options 2 and 4 when either is checked
-    if ( $(".activities input:eq(1)").is(":checked") === true ) {
-      $(".activities input:eq(3)").prop("disabled", true)
-      $(".activities label:eq(3)").css("color", "grey");
+    if ( jsFrameworksBox.is(":checked") === true ) {
+      expressBox.prop("disabled", true);
+      expressText.css("color", "grey");
     } else {
-      $(".activities label:eq(3)").prop("disabled", false).css("color", "black");
+      expressBox.prop("disabled", false);
+      expressText.css("color", "black");
     }
-    if ( $(".activities input:eq(3)").is(":checked") === true ) {
-      $(".activities label:eq(1)").prop("disabled", true).css("color", "grey");
+    if ( expressBox.is(":checked") === true ) {
+      jsFrameworksBox.prop("disabled", true);
+      jsFrameworksText.css("color", "grey");
     } else {
-      $(".activities label:eq(1)").prop("disabled", false).css("color", "black");
+      jsFrameworksBox.prop("disabled", false);
+      jsFrameworksText.css("color", "black");
     }
 // disable/enable options 3 and 5 when either is checked
-    if ( $(".activities input:eq(2)").is(":checked") === true ) {
-      $(".activities label:eq(4)").prop("disabled", true).css("color", "grey");
+    if ( librariesBox.is(":checked") === true ) {
+      nodeBox.prop("disabled", true);
+      nodeText.css("color", "grey");
     } else {
-      $(".activities label:eq(4)").prop("disabled", false).css("color", "black");
+      nodeBox.prop("disabled", false);
+      nodeText.css("color", "black");
     }
-    if ( $(".activities input:eq(4)").is(":checked") === true ) {
-      $(".activities label:eq(2)").prop("disabled", true).css("color", "grey");
+    if ( nodeBox.is(":checked") === true ) {
+      librariesBox.prop("disabled", true);
+      librariesText.css("color", "grey");
     } else {
-      $(".activities label:eq(2)").prop("disabled", false).css("color", "black");
+      librariesBox.prop("disabled", false);
+      librariesText.css("color", "black");
     }
   });
 
