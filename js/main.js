@@ -60,10 +60,9 @@ function disableCheckbox() {
 
   $(".activities :checkbox").change(function() {
 
-//   // disable/enable options 2 and 4 when either is checked
+// disable/enable options 2 and 4 when either is checked
     if ( $jsFrameworks.prop("checked") === true ) {
       $express.prop("disabled", true);
-      $("label").css({"color": "green"});
     } else {
       $express.prop("disabled", false);
     }
@@ -72,7 +71,7 @@ function disableCheckbox() {
     } else {
       $jsFrameworks.prop("disabled", false);
     }
-//     // disable/enable options 3 and 5 when either is checked
+//  disable/enable options 3 and 5 when either is checked
     if( $library.prop("checked") === true ) {
       $node.prop("disabled", true);
     } else {
@@ -83,11 +82,13 @@ function disableCheckbox() {
     } else {
       $library.prop("disabled", false);
     }
+
   });
 }
 
-disableCheckbox();
 
+
+disableCheckbox();
 
 // create a new html element and keep a running total of activities chosen
 
