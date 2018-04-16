@@ -110,15 +110,17 @@ $("#design").change(function() {
     const twoHundred = $(".activities input:eq(0)");
     const oneHundred = $(".activities input:eq(1)")
     // each time a box is changed (selected or deselected) add or subtract numbers
-      if (twoHundred.is(":checked") === true ) {
-        grandTotal = parseInt(runningTotal) + 200;
+      if ($(".activities input:eq(0)").is(":checked") === true ) {
+        grandTotal = parseInt(runningTotal + 200);
         // newElement.append(grandTotal);
       } else {
-        grandTotal = parseInt(runningTotal) - 200;
+        grandTotal = parseInt(runningTotal - 200);
         // newElement.append(grandTotal);
       }
   });
 
-  $(".activities").on("click", function() {
-    newElement.append(grandTotal);
-  })
+document.getElementsByClassName("activities").value = grandTotal;
+activitiesFieldset.append(newElement);
+  // $(".activities").on("click", function() {
+  //   newElement.add(grandTotal).text();
+  // })
