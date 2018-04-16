@@ -27,7 +27,7 @@ $("#design").change(function() {
 
   const puns = $("#design option[value='js puns']").text();
   const heart = $("#design option[value='heart js']").text();
-  var $selectColor = $("#design option:selected").text();
+  let $selectColor = $("#design option:selected").text();
 
   $("#color").children().remove();
 
@@ -108,16 +108,21 @@ $("#design").change(function() {
 // use on "click" function to immediately display the total cost as the user selectors
 // the first checkbox - should be outside the change function
 
-const activities = $(".activities");
-console.log(activities.text());
 
-function calculateCost (event) {
-  const checkbox = event.target;
-  const checked = checkbox.checked;
-  const newElement = document.createElement("p");
+// $(".activities :checkbox").change(function () {
+//   const text = $(".activities input:eq(0)");
+//
+//   if (text.is(":checked") === true ) {
+//     alert("Yay!");
+//     console.log("Hello");
+//   }
+// });
 
-  let totalPrice = 0;
 
-  if ($(".activities [input*='2']").is(":checked") === true )
-    totalPrice = totalPrice + 200;
+const activities = document.querySelectorAll(".activities label");
+
+for (let i = 0; i < activities.length; i +=1 ) {
+  if ( activities[i].checked == true) {
+    console.log("chicken");
   }
+}
