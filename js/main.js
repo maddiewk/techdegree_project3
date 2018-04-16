@@ -94,33 +94,4 @@ $("#design").change(function() {
   });
 
 
-// create a new html element and keep a running total of activities chosen
-
-  // const totalCost = 0;
-
-  var runningTotal = 0;
-  var grandTotal = 0;
-  const activitiesFieldset = $(".activities");
-  var newElement = activitiesFieldset.add("<legend>Total Cost: $</legend>");
-
-// update the running total with totalCost variable
-
-  $(".activities :checkbox").change(function() {
-    // variables for this function
-    const twoHundred = $(".activities input:eq(0)");
-    const oneHundred = $(".activities input:eq(1)")
-    // each time a box is changed (selected or deselected) add or subtract numbers
-      if ($(".activities input:eq(0)").is(":checked") === true ) {
-        grandTotal = parseInt(runningTotal + 200);
-        // newElement.append(grandTotal);
-      } else {
-        grandTotal = parseInt(runningTotal - 200);
-        // newElement.append(grandTotal);
-      }
-  });
-
-document.getElementsByClassName("activities").value = grandTotal;
-activitiesFieldset.append(newElement);
-  // $(".activities").on("click", function() {
-  //   newElement.add(grandTotal).text();
-  // })
+// create new element and keep a running total of activities chosen
