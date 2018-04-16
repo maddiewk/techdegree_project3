@@ -96,13 +96,28 @@ $("#design").change(function() {
 
 // create new element and keep a running total of activities chosen
 
-// use a change function on the "activities" fieldset to handle change events
+// use an event handler on the "activities" fieldset to handle change events
 
 // use :not() and :first-child() selectors to select the different checkboxes ($100 and $200)
+// or use the pseudo selectors "includes" and use the character '1' or '2'
 
 // assign a variable to hold the running total and update it using if statements
 
 // add the final running total variable to the value(?) of the new element you created at beginning
 
 // use on "click" function to immediately display the total cost as the user selectors
-// the first checkbox - should be outside the change function though
+// the first checkbox - should be outside the change function
+
+const activities = $(".activities");
+console.log(activities.text());
+
+function calculateCost (event) {
+  const checkbox = event.target;
+  const checked = checkbox.checked;
+  const newElement = document.createElement("p");
+
+  let totalPrice = 0;
+
+  if ($(".activities [input*='2']").is(":checked") === true )
+    totalPrice = totalPrice + 200;
+  }
