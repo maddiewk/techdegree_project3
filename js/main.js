@@ -110,7 +110,7 @@ function calculateTotal(currentCheckbox) {
   }
   $("#total").remove();
   if (totalPrice > 0) {
-    $(".activities").last().append("<legend id='total'>Total: $" + totalPrice + "</legend>");
+    $(".activities").append("<legend id='total'>Total: $" + totalPrice + "</legend>");
   }
 }
 // when activities are selected, the calculateTotal function is called
