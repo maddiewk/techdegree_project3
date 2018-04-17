@@ -92,57 +92,28 @@ $("#design").change(function() {
       librariesText.css("color", "black");
     }
   });
+// function to calculate total cost of each activity
+let totalPrice = 0;
 
+function calculateTotal(currentCheckbox) {
 
-// create new element and keep a running total of activities chosen
-
-// use an event handler on the "activities" fieldset to handle change events
-
-// assign a variable to hold the running total and update it using if statements
-
-// use on "click" function to immediately display the total cost as the user selectors
-// the first checkbox - should be outside the change function
-
-
-// $(".activities :checkbox").change(function () {
-//   const text = $(".activities input:eq(0)");
-//
-//   if (text.is(":checked") === true ) {
-//     alert("Yay!");
-//     console.log("Hello");
-//   }
-// });
-// const firstActivity = $(".activities label:eq(0)").text();
-// const oneHundred = $(".activities label").slice(1, 6).text();
-
-// $(".activities label").each(function(index) {
-//   const text = $(this).text();
-//   console.log(index + ": " + text);
-//
-// });
-
-
-$(".activities :checkbox").change(function (event) {
-  calculateTotal(this);
-});
-
-function calculateTotal() {
-  let totalPrice = 0;
-  // const checkbox = $(this);
-  const allActivities = $(".activities :checkbox");
-  const isChecked = allActivities.is(":checked");
-  const checkedLabel = allActivities.parent();
+  const isChecked = currentCheckbox.is(':checked');
+  const checkedLabel = currentCheckbox.parent();
   const labelText = checkedLabel.text();
   const number = labelText.indexOf('$') + 1;
   const cost = labelText.slice(number);
-  // console.log(cost);
 
   if (isChecked) {
     totalPrice += parseInt(cost);
   } else {
     totalPrice -= parseInt(cost);
   }
-  console.log(totalPrice);
-
-
+  $("#total").remove();
+  if (totalPrice > 0) {
+    $(".activities").last().append("<legend id='total'>Total: $" + totalPrice + "</legend>");
+  }
 }
+// when activities are selected, the calculateTotal function is called
+$(".activities :checkbox").on("change", function() {
+  calculateTotal($(this));
+});
