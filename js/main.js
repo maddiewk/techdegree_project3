@@ -98,12 +98,7 @@ $("#design").change(function() {
 
 // use an event handler on the "activities" fieldset to handle change events
 
-// use :not() and :first-child() selectors to select the different checkboxes ($100 and $200)
-// or use the pseudo selectors "includes" and use the character '1' or '2'
-
 // assign a variable to hold the running total and update it using if statements
-
-// add the final running total variable to the value(?) of the new element you created at beginning
 
 // use on "click" function to immediately display the total cost as the user selectors
 // the first checkbox - should be outside the change function
@@ -117,12 +112,37 @@ $("#design").change(function() {
 //     console.log("Hello");
 //   }
 // });
+// const firstActivity = $(".activities label:eq(0)").text();
+// const oneHundred = $(".activities label").slice(1, 6).text();
+
+// $(".activities label").each(function(index) {
+//   const text = $(this).text();
+//   console.log(index + ": " + text);
+//
+// });
 
 
-const activities = document.querySelectorAll(".activities label");
+$(".activities :checkbox").change(function (event) {
+  calculateTotal(this);
+});
 
-for (let i = 0; i < activities.length; i +=1 ) {
-  if ( activities[i].checked == true) {
-    console.log("chicken");
+function calculateTotal() {
+  let totalPrice = 0;
+  // const checkbox = $(this);
+  const allActivities = $(".activities :checkbox");
+  const isChecked = allActivities.is(":checked");
+  const checkedLabel = allActivities.parent();
+  const labelText = checkedLabel.text();
+  const number = labelText.indexOf('$') + 1;
+  const cost = labelText.slice(number);
+  // console.log(cost);
+
+  if (isChecked) {
+    totalPrice += parseInt(cost);
+  } else {
+    totalPrice -= parseInt(cost);
   }
+  console.log(totalPrice);
+
+
 }
