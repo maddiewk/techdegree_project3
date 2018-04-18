@@ -184,6 +184,16 @@ function invalidEmail() {
   }
 }
 // must select at least one checkbox from the Activities portion
+
+function validateCheckbox() {
+  let n = $("input:checked").length();
+
+  if (n === 0) {
+    console.log("Select at least one checkbox");
+  } else {
+    console.log("chicken");
+  }
+}
 // If the selected payment option is "Credit Card," make sure the user has supplied
 // a credit card number, a zip code, and a 3 number CVV value before the form can be submitted
 // credit card field should only accept a number between 13 and 16 digits
@@ -207,4 +217,5 @@ submitButton.click(function(e) {
   e.preventDefault();
   nameInput();
   invalidEmail();
+  validateCheckbox();
 });
