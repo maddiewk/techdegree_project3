@@ -1,5 +1,6 @@
 // variables used in global scope
 const nameField = $("#name");
+const emailField = $("#mail");
 const otherTextField = $("#other-title");
 
 // when the page loads give focus to the first text field
@@ -162,6 +163,7 @@ $("#payment").change(function() {
 // name field can't be blank
 function nameInput() {
   let nameIn = $("#name").val();
+  // const nameErrorMessage = "<h4>Please enter your name.</h4>";
 
   if (nameIn === "") {
     nameField.css("border-color", "red");
@@ -171,7 +173,16 @@ function nameInput() {
 }
 
 // email must be correctly formatted
+function invalidEmail() {
+  let valid = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/;
+  let emailInput = $("#mail").val();
 
+  if (valid.test(emailInput)) {
+    emailField.css("border-color", "#c1deeb")
+  } else {
+    emailField.css("border-color", "red");
+  }
+}
 // must select at least one checkbox from the Activities portion
 // If the selected payment option is "Credit Card," make sure the user has supplied
 // a credit card number, a zip code, and a 3 number CVV value before the form can be submitted
@@ -186,10 +197,14 @@ function nameInput() {
 
 
 
+
+
+
 // event listener on the "Register" submit button
 
 const submitButton = $("button");
 submitButton.click(function(e) {
   e.preventDefault();
   nameInput();
+  invalidEmail();
 });
