@@ -1,15 +1,19 @@
+// variables used in global scope
+const nameField = $("#name");
+const otherTextField = $("#other-title");
+
 // when the page loads give focus to the first text field
-document.getElementById("name").focus();
+nameField.focus();
 
 // hide the "other-title" text field
-$("#other-title").hide();
+otherTextField.hide();
 // if "other" option is selected, show text field
 $("#title").change(function() {
   var $selected = $("#title option:selected").text();
     if( $selected === "Other") {
-      $("#other-title").show();
+      otherTextField.show();
   } else {
-      $("#other-title").hide();
+      otherTextField.hide();
   }
 });
 
@@ -156,7 +160,18 @@ $("#payment").change(function() {
 
 // form validation
 // name field can't be blank
+function nameInput() {
+  let nameIn = $("#name").val();
+
+  if (nameIn === "") {
+    nameField.css("border-color", "red");
+  } else {
+    nameField.css("border-color", "#c1deeb");
+  }
+}
+
 // email must be correctly formatted
+
 // must select at least one checkbox from the Activities portion
 // If the selected payment option is "Credit Card," make sure the user has supplied
 // a credit card number, a zip code, and a 3 number CVV value before the form can be submitted
@@ -167,3 +182,14 @@ $("#payment").change(function() {
 // provide visual indication when there's an error
 // there should be an error indication for the name field, email field, 'Register for Activities'
 // checkboxes, credit card number, zip code, and CVV
+
+
+
+
+// event listener on the "Register" submit button
+
+const submitButton = $("button");
+submitButton.click(function(e) {
+  e.preventDefault();
+  nameInput();
+});
