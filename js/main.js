@@ -24,7 +24,7 @@ $("#color option[value='dimgrey']").remove();
 
 $("#colors-js-puns").hide();
 $("#design").change(function() {
-
+// variables to hold text of each design option and the selected text
   const puns = $("#design option[value='js puns']").text();
   const heart = $("#design option[value='heart js']").text();
   let $selectColor = $("#design option:selected").text();
@@ -48,10 +48,10 @@ $("#design").change(function() {
   }
 });
 
-
 // function to disable or enable activities if they conflict with each other as the user selects and deselects
 
   $(".activities :checkbox").change(function() {
+  // variables holding each activity that is conflicts with another
     const jsFrameworksBox = $(".activities input:eq(1)");
     const jsFrameworksText = $(".activities label:eq(1)");
     const expressBox = $(".activities input:eq(3)");
@@ -117,3 +117,33 @@ function calculateTotal(currentCheckbox) {
 $(".activities :checkbox").on("change", function() {
   calculateTotal($(this));
 });
+
+// payment section
+// variables for Bitcoin and PayPal select input options
+const creditCard = $("#credit-card");
+const payPal = $("p:contains('PayPal')");
+const bitCoin = $("p:contains('Bitcoin')");
+// first, hide everything but the credit card option
+payPal.hide();
+bitCoin.hide();
+
+// when the "Bitcoin" option is selected that info is shown and the rest hidden
+// when "PayPal" option is selected that info is shown and the rest hidden
+
+$("#payment").change(function() {
+  const selectedPayment = $("#payment option:selected").text();
+
+  if (selectedPayment == "PayPal") {
+    payPal.show();
+    creditCard.hide();
+    bitCoin.hide();
+  } else if(selectedPayment == "Bitcoin") {
+    payPal.hide();
+    creditCard.hide();
+    bitCoin.show();
+  } else {
+    payPal.hide();
+    bitCoin.hide();
+    creditCard.show();
+  }
+})
