@@ -123,6 +123,8 @@ $(".activities :checkbox").on("change", function() {
 const creditCard = $("#credit-card");
 const payPal = $("p:contains('PayPal')");
 const bitCoin = $("p:contains('Bitcoin')");
+// display credit card option as default
+$("#payment option[value='credit card']").attr("selected", true);
 // first, hide everything but the credit card option
 payPal.hide();
 bitCoin.hide();
@@ -141,9 +143,27 @@ $("#payment").change(function() {
     payPal.hide();
     creditCard.hide();
     bitCoin.show();
-  } else {
+  } else if(selectedPayment == "Credit Card") {
     payPal.hide();
     bitCoin.hide();
     creditCard.show();
+  } else {
+    payPal.hide();
+    creditCard.hide();
+    bitCoin.hide();
   }
 })
+
+// form validation
+// name field can't be blank
+// email must be correctly formatted
+// must select at least one checkbox from the Activities portion
+// If the selected payment option is "Credit Card," make sure the user has supplied
+// a credit card number, a zip code, and a 3 number CVV value before the form can be submitted
+// credit card field should only accept a number between 13 and 16 digits
+// zipcode should be 5 digits long
+// CVV should be exactly 3 digits long
+
+// provide visual indication when there's an error
+// there should be an error indication for the name field, email field, 'Register for Activities'
+// checkboxes, credit card number, zip code, and CVV
