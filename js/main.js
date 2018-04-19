@@ -202,11 +202,20 @@ function validateCheckbox() {
 // CVV should be exactly 3 digits long
 function validateCreditCard() {
   const creditCardOption = $("#payment option[value='credit card']");
-  console.log(creditCardOption);
+  const cardNumber = $("#cc-num").val();
+  const zipInput = $("#zip").val();
+  const cVVInput = $("#cvv").val();
+
   if (creditCardOption.is(':selected')) {
-    console.log("chicken");
-  } else {
-    console.log("cow");
+    if (cardNumber.length < 13 || cardNumber.length > 16) {
+      $("#cc-num").css("border-color", "red");
+    }
+    if (zipInput.length != 5) {
+      $("#zip").css("border-color", "red");
+    }
+    if (cVVInput.length != 3) {
+      $("#cvv").css("border-color", "red");
+    }
   }
 }
 // provide visual indication when there's an error
@@ -214,10 +223,6 @@ function validateCreditCard() {
 // checkboxes, credit card number, zip code, and CVV
 
 // error indicators for card number, zip code and CVV
-$("#cc-num").css("border-color", "red");
-$("#zip").css("border-color", "red");
-$("#cvv").css("border-color", "red");
-
 
 
 
