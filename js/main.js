@@ -164,19 +164,31 @@ $("#payment").change(function() {
 // name field can't be blank
 function nameInput() {
   let nameIn = $("#name").val();
-  // const nameErrorMessage = "<h4>Please enter your name.</h4>";
 
   if (nameIn === "") {
     nameField.css("border-color", "red");
+    $("#name").before("<div id='name-error' style='color:red;'>Name Required</div>");
   } else {
-    nameField.css("border-color", "#c1deeb");
+    nameField.css("border-color", "");
+    $("#name-error").remove();
+  }
+  const nameJ = document.getElementById("name");
+  nameJ.oninput = function () {
+    nameInput();
   }
 }
+
 
 // email must be correctly formatted
 function invalidEmail() {
   let valid = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/;
   let emailInput = $("#mail").val();
+
+  if (emailInput === "") {
+    $("#mail").before("<div id='email-error' style='color:red;'>Email Required</div>");
+  } else {
+    $("#email-error").hide();
+  }
 
   if (valid.test(emailInput)) {
     emailField.css("border-color", "#c1deeb");
@@ -190,9 +202,10 @@ function validateCheckbox() {
   let n = $("input:checked").length;
 
   if (n === 0) {
-    $(".activities legend").css("color", "red");
+    // append a message in red right next to the Activities legend
+    $(".activities label[name='all']").after("<div id='checkbox-error' style='color:red;'>Please choose at least one activity</div>");
   } else {
-    $(".activities legend").css("color", "#184f68");
+    $("#checkbox-error").remove();
   }
 }
 // If the selected payment option is "Credit Card," make sure the user has supplied
@@ -200,25 +213,48 @@ function validateCheckbox() {
 // credit card field should only accept a number between 13 and 16 digits
 // zipcode should be 5 digits long
 // CVV should be exactly 3 digits long
+const $ccMessage = "<div id ='cc-error' style='color:red;'>All fields required</div>";
+$("#credit-card").before($ccMessage);
+$("#cc-error").remove();
+
 function validateCreditCard() {
   const creditCardOption = $("#payment option[value='credit card']");
-  const cardNumber = $("#cc-num").val();
+  const cardNumber = $("#cc-num");
   const zipInput = $("#zip").val();
   const cVVInput = $("#cvv").val();
 
   if (creditCardOption.is(':selected')) {
-    if (cardNumber.length < 13 || cardNumber.length > 16 || isNaN(cardNumber)) {
+    if (cardNumber.val().length < 13 || cardNumber.val().length > 16 || parseInt(isNaN(cardNumber.val()))) {
       $("#cc-num").css("border-color", "red");
-    }
-    if (zipInput.length != 5 || isNaN(zipInput)) {
-      $("#zip").css("border-color", "red");
-    }
-    if (cVVInput.length != 3 || isNaN(cVVInput)) {
-      $("#cvv").css("border-color", "red");
+      $("#credit-card").before($ccMessage);
+    } else {
+      $("#cc-num").css("border-color", "#c1deeb");
+      $("#cc-error").remove();
     }
   }
 }
 
+function validateZip () {
+    if (zipInput.length != 5 || isNaN(zipInput)) {
+      $("#zip").css("border-color", "red");
+      $("#credit-card").before($ccMessage);
+
+    } else {
+      $("#zip").css("border-color", "#c1deeb");
+      $("#cc-error").remove();
+    }
+  }
+
+function validateCVV () {
+    if (cVVInput.length != 3 || isNaN(cVVInput)) {
+      $("#cvv").css("border-color", "red");
+      $("#credit-card").before($ccMessage);
+
+    } else {
+      $("#cvv").css("border-color", "#c1deeb");
+      $("#cc-error").remove();
+    }
+  }
 
 
 
