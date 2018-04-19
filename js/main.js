@@ -3,6 +3,7 @@ const nameField = $("#name");
 const emailField = $("#mail");
 const otherTextField = $("#other-title");
 
+
 // when the page loads give focus to the first text field
 nameField.focus();
 
@@ -138,7 +139,7 @@ bitCoin.hide();
 // when "PayPal" option is selected that info is shown and the rest hidden
 
 $("#payment").change(function() {
-  const selectedPayment = $("#payment option:selected").text();
+  let selectedPayment = $("#payment option:selected").text();
 
   if (selectedPayment == "PayPal") {
     payPal.show();
@@ -200,11 +201,22 @@ function validateCheckbox() {
 // zipcode should be 5 digits long
 // CVV should be exactly 3 digits long
 function validateCreditCard() {
-  
+  const creditCardOption = $("#payment option[value='credit card']");
+  console.log(creditCardOption);
+  if (creditCardOption.is(':selected')) {
+    console.log("chicken");
+  } else {
+    console.log("cow");
+  }
 }
 // provide visual indication when there's an error
 // there should be an error indication for the name field, email field, 'Register for Activities'
 // checkboxes, credit card number, zip code, and CVV
+
+// error indicators for card number, zip code and CVV
+$("#cc-num").css("border-color", "red");
+$("#zip").css("border-color", "red");
+$("#cvv").css("border-color", "red");
 
 
 
@@ -220,4 +232,5 @@ submitButton.click(function(e) {
   nameInput();
   invalidEmail();
   validateCheckbox();
+  validateCreditCard();
 });
