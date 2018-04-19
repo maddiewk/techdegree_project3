@@ -207,23 +207,17 @@ function validateCreditCard() {
   const cVVInput = $("#cvv").val();
 
   if (creditCardOption.is(':selected')) {
-    if (cardNumber.length < 13 || cardNumber.length > 16) {
+    if (cardNumber.length < 13 || cardNumber.length > 16 || isNaN(cardNumber)) {
       $("#cc-num").css("border-color", "red");
     }
-    if (zipInput.length != 5) {
+    if (zipInput.length != 5 || isNaN(zipInput)) {
       $("#zip").css("border-color", "red");
     }
-    if (cVVInput.length != 3) {
+    if (cVVInput.length != 3 || isNaN(cVVInput)) {
       $("#cvv").css("border-color", "red");
     }
   }
 }
-// provide visual indication when there's an error
-// there should be an error indication for the name field, email field, 'Register for Activities'
-// checkboxes, credit card number, zip code, and CVV
-
-// error indicators for card number, zip code and CVV
-
 
 
 
