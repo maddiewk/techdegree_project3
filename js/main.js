@@ -178,7 +178,7 @@ function invalidEmail() {
   let emailInput = $("#mail").val();
 
   if (valid.test(emailInput)) {
-    emailField.css("border-color", "#c1deeb")
+    emailField.css("border-color", "#c1deeb");
   } else {
     emailField.css("border-color", "red");
   }
@@ -186,12 +186,12 @@ function invalidEmail() {
 // must select at least one checkbox from the Activities portion
 
 function validateCheckbox() {
-  let n = $("input:checked").length();
+  let n = $("input:checked").length;
 
   if (n === 0) {
-    console.log("Select at least one checkbox");
+    $(".activities legend").css("color", "red");
   } else {
-    console.log("chicken");
+    $(".activities legend").css("color", "#184f68");
   }
 }
 // If the selected payment option is "Credit Card," make sure the user has supplied
@@ -199,7 +199,9 @@ function validateCheckbox() {
 // credit card field should only accept a number between 13 and 16 digits
 // zipcode should be 5 digits long
 // CVV should be exactly 3 digits long
-
+function validateCreditCard() {
+  
+}
 // provide visual indication when there's an error
 // there should be an error indication for the name field, email field, 'Register for Activities'
 // checkboxes, credit card number, zip code, and CVV
