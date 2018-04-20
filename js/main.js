@@ -169,18 +169,14 @@ function nameInput() {
   let nameIn = $("#name").val();
 
   if (nameIn === "") {
-    nameField.css("border-color", "red");
-    $("#name").before("<div id='name-error' style='color:red;'>Name Required</div>");
+    nameField.addClass('error').css("border-color", "red");
+    $("#name").before("<div class='error' id='name-error' style='color:red;'>Name Required</div>");
   } else {
     nameField.css("border-color", "");
     $("#name-error").remove();
-  }
-  const nameJ = document.getElementById("name");
-  nameJ.oninput = function () {
-    nameInput();
+    nameField.removeClass('error');
   }
 }
-
 
 // email must be correctly formatted
 function invalidEmail() {
@@ -188,70 +184,68 @@ function invalidEmail() {
   let emailInput = $("#mail").val();
 
   if (emailInput === "") {
-    $("#mail").before("<div id='email-error' style='color:red;'>Email Required</div>");
+    emailField.addClass('error').css("border-color", "red");
+    $("#mail").before("<div class='error' id='email-error' style='color:red;'>Email Required</div>");
   } else {
+    emailField.css("border-color","");
     $("#email-error").hide();
+    emailField.removeClass('error');
   }
 
   if (valid.test(emailInput)) {
-    emailField.css("border-color", "#c1deeb");
+    emailField.css("border-color", "");
   } else {
-    emailField.css("border-color", "red");
+    $("#mail").before("<div class='error' id='regex' style='color:red;'>Invalid Email</div>");
+    emailField.addClass("error").css("border-color", "red");
   }
 }
 // must select at least one checkbox from the Activities portion
 function validateCheckbox() {
   let n = $("input:checked").length;
-  console.log(n);
+
   if (n === 0) {
-    // append a message in red right next to the Activities legend
-    $(".activities legend").after("<div id='checkbox-error' style='color:red;'>Please choose at least one activity</div>");
+    $(".activities legend").after("<div class='error' id='checkbox-error' style='color:red;'>Please choose at least one activity</div>");
   } else {
     $("#checkbox-error").remove();
   }
 }
 // set up error message for payment field
 const $ccMessage = "<div class='error' id='cc-error' style='color:red;'>All fields required</div>";
-$("#credit-card").before($ccMessage);
-$("#cc-error").remove();
+// $("#credit-card").before($ccMessage);
+
 
 //validate payment information fields
 function validateCreditCard() {
+  $("#cc-error").remove();
   const creditCardOption = $("#payment option[value='credit card']");
-  if (creditCardOption.is(':selected')) {
-    if (cardNumber.val().length < 13 || cardNumber.val().length > 16 || parseInt(isNaN(cardNumber.val()))) {
-      $("#cc-num").css("border-color", "red");
+    if (((cardNumber.val().length < 13 || cardNumber.val().length > 16) || (isNaN(parseInt(cardNumber.val())))) && (creditCardOption.is(':selected'))) {
+      $("#cc-num").addClass("error").css("border-color", "red");
       $("#credit-card").before($ccMessage);
-
     } else {
-      $("#cc-num").css("border-color", "#c1deeb");
+      $("#cc-num").removeClass("error").css("border-color", "");
       $("#cc-error").remove();
     }
   }
-}
 
 function validateZip () {
-  if (creditCardOption.is(':selected')) {
-    if (zipInput.val().length != 5 || parseInt(isNaN(zipInput.val()))) {
-      $("#zip").css("border-color", "red");
+    if ((zipInput.val().length != 5 || isNaN(parseInt(zipInput.val()))) && (creditCardOption.is(':selected'))) {
+      $("#zip").addClass("error").css("border-color", "red");
       $("#credit-card").before($ccMessage);
     } else {
-      $("#zip").css("border-color", "#c1deeb");
+      $("#zip").removeClass("error").css("border-color", "");
       $("#cc-error").remove();
     }
   }
-}
+
 function validateCVV () {
-  if (creditCardOption.is(':selected')) {
-    if (cVVInput.val().length != 3 || parseInt(isNaN(cVVInput.val()))) {
-      $("#cvv").css("border-color", "red");
+    if ((cVVInput.val().length != 3 || isNaN(parseInt(cVVInput.val()))) && (creditCardOption.is(':selected'))) {
+      $("#cvv").addClass("error").css("border-color", "red");
       $("#credit-card").before($ccMessage);
     } else {
-      $("#cvv").css("border-color", "#c1deeb");
+      $("#cvv").removeClass("error").css("border-color", "");
       $("#cc-error").remove();
     }
   }
-}
 
 // create one function that calls all functions created above
 function validateAllForms(e) {
@@ -260,20 +254,27 @@ function validateAllForms(e) {
   validateCheckbox();
   validateCreditCard();
   validateZip();
+  validateCVV();
+
+  let allLabels = document.querySelectorAll("label");
+  for (let i = 0; i < allLabels.length; i += 1) {
+    if (allLabels[i].hasClass("error")) {
+      return true;
+    }
+  }
+
+}
+// validate name field in real time
+const nameJ = document.getElementById("name");
+nameJ.oninput = function () {
+  nameInput();
 }
 
 // event listener on the "Register" submit button
-
-const submitButton = $("button");
-submitButton.click(function(e) {
-  // if ($("body").hasClass('error')) {
-  //   e.preventDefault();
-  // }
-  // $("body").each(function () {
-  //   if ($(this).hasClass('error')) {
-  //     e.preventDefault();
-  //   }
-  // });
-  e.preventDefault();
-
-});
+$("form").on("submit", (function(e) {
+  let validationError = validateAllForms();
+    if (validationError) {
+      e.preventDefault();
+      return false;
+  }
+}));
