@@ -2,6 +2,9 @@
 const nameField = $("#name");
 const emailField = $("#mail");
 const otherTextField = $("#other-title");
+const cardNumber = $("#cc-num");
+const zipInput = $("#zip");
+const cVVInput = $("#cvv");
 
 
 // when the page loads give focus to the first text field
@@ -160,7 +163,7 @@ $("#payment").change(function() {
   }
 })
 
-// form validation
+/* =========================> Form Validation <======================= */
 // name field can't be blank
 function nameInput() {
   let nameIn = $("#name").val();
@@ -197,36 +200,29 @@ function invalidEmail() {
   }
 }
 // must select at least one checkbox from the Activities portion
-
 function validateCheckbox() {
   let n = $("input:checked").length;
-
+  console.log(n);
   if (n === 0) {
     // append a message in red right next to the Activities legend
-    $(".activities label[name='all']").after("<div id='checkbox-error' style='color:red;'>Please choose at least one activity</div>");
+    $(".activities legend").after("<div id='checkbox-error' style='color:red;'>Please choose at least one activity</div>");
   } else {
     $("#checkbox-error").remove();
   }
 }
-// If the selected payment option is "Credit Card," make sure the user has supplied
-// a credit card number, a zip code, and a 3 number CVV value before the form can be submitted
-// credit card field should only accept a number between 13 and 16 digits
-// zipcode should be 5 digits long
-// CVV should be exactly 3 digits long
-const $ccMessage = "<div id ='cc-error' style='color:red;'>All fields required</div>";
+// set up error message for payment field
+const $ccMessage = "<div class='error' id='cc-error' style='color:red;'>All fields required</div>";
 $("#credit-card").before($ccMessage);
 $("#cc-error").remove();
 
+//validate payment information fields
 function validateCreditCard() {
   const creditCardOption = $("#payment option[value='credit card']");
-  const cardNumber = $("#cc-num");
-  const zipInput = $("#zip").val();
-  const cVVInput = $("#cvv").val();
-
   if (creditCardOption.is(':selected')) {
     if (cardNumber.val().length < 13 || cardNumber.val().length > 16 || parseInt(isNaN(cardNumber.val()))) {
       $("#cc-num").css("border-color", "red");
       $("#credit-card").before($ccMessage);
+
     } else {
       $("#cc-num").css("border-color", "#c1deeb");
       $("#cc-error").remove();
@@ -235,37 +231,49 @@ function validateCreditCard() {
 }
 
 function validateZip () {
-    if (zipInput.length != 5 || isNaN(zipInput)) {
+  if (creditCardOption.is(':selected')) {
+    if (zipInput.val().length != 5 || parseInt(isNaN(zipInput.val()))) {
       $("#zip").css("border-color", "red");
       $("#credit-card").before($ccMessage);
-
     } else {
       $("#zip").css("border-color", "#c1deeb");
       $("#cc-error").remove();
     }
   }
-
+}
 function validateCVV () {
-    if (cVVInput.length != 3 || isNaN(cVVInput)) {
+  if (creditCardOption.is(':selected')) {
+    if (cVVInput.val().length != 3 || parseInt(isNaN(cVVInput.val()))) {
       $("#cvv").css("border-color", "red");
       $("#credit-card").before($ccMessage);
-
     } else {
       $("#cvv").css("border-color", "#c1deeb");
       $("#cc-error").remove();
     }
   }
+}
 
-
-
+// create one function that calls all functions created above
+function validateAllForms(e) {
+  nameInput();
+  invalidEmail();
+  validateCheckbox();
+  validateCreditCard();
+  validateZip();
+}
 
 // event listener on the "Register" submit button
 
 const submitButton = $("button");
 submitButton.click(function(e) {
+  // if ($("body").hasClass('error')) {
+  //   e.preventDefault();
+  // }
+  // $("body").each(function () {
+  //   if ($(this).hasClass('error')) {
+  //     e.preventDefault();
+  //   }
+  // });
   e.preventDefault();
-  nameInput();
-  invalidEmail();
-  validateCheckbox();
-  validateCreditCard();
+
 });
