@@ -210,14 +210,22 @@ function validateCheckbox() {
   }
 }
 // set up error message for payment field
-const $ccMessage = "<div class='error' id='cc-error' style='color:red;'>All fields required</div>";
-// $("#credit-card").before($ccMessage);
+const $ccMessage = "<div class='error' id='cc-error' style='color:red;'>Please enter a valid credit card number</div>";
+const $zipMessage = "<div class='error' id='zip-error' style='color:red;'>Please enter your zip code</div>";
+const $cvvMessage = "<div class='error' id='cvv-error' style='color:red;'>Please enter your CVV</div>";
 
+// $("#credit-card").before($ccMessage);
+const creditCardOption = $("#payment option[value='credit card']");
+
+$("#credit-card").before($ccMessage);
+$("#credit-card").before($zipMessage);
+$("#credit-card").before($cvvMessage);
+$("#cc-error").remove();
+$("#zip-error").remove();
+$("#cvv-error").remove();
 
 //validate payment information fields
 function validateCreditCard() {
-  $("#cc-error").remove();
-  const creditCardOption = $("#payment option[value='credit card']");
     if (((cardNumber.val().length < 13 || cardNumber.val().length > 16) || (isNaN(parseInt(cardNumber.val())))) && (creditCardOption.is(':selected'))) {
       $("#cc-num").addClass("error").css("border-color", "red");
       $("#credit-card").before($ccMessage);
@@ -230,20 +238,20 @@ function validateCreditCard() {
 function validateZip () {
     if ((zipInput.val().length != 5 || isNaN(parseInt(zipInput.val()))) && (creditCardOption.is(':selected'))) {
       $("#zip").addClass("error").css("border-color", "red");
-      $("#credit-card").before($ccMessage);
+      $("#credit-card").before($zipMessage);
     } else {
       $("#zip").removeClass("error").css("border-color", "");
-      $("#cc-error").remove();
+      $("#zip-error").remove();
     }
   }
 
 function validateCVV () {
     if ((cVVInput.val().length != 3 || isNaN(parseInt(cVVInput.val()))) && (creditCardOption.is(':selected'))) {
       $("#cvv").addClass("error").css("border-color", "red");
-      $("#credit-card").before($ccMessage);
+      $("#credit-card").before($cvvMessage);
     } else {
       $("#cvv").removeClass("error").css("border-color", "");
-      $("#cc-error").remove();
+      $("#cvv-error").remove();
     }
   }
 
@@ -256,12 +264,17 @@ function validateAllForms(e) {
   validateZip();
   validateCVV();
 
-  let allLabels = document.querySelectorAll("label");
-  for (let i = 0; i < allLabels.length; i += 1) {
-    if (allLabels[i].hasClass("error")) {
-      return true;
-    }
+$("div").each(function() {
+  if ($(this).hasClass("error")) {
+    return true;
   }
+});
+  // let allLabels = document.querySelectorAll("label");
+  // for (let i = 0; i < allLabels.length; i += 1) {
+  //   if (allLabels[i].hasClass("error")) {
+  //     return true;
+  //   }
+  // }
 
 }
 // validate name field in real time
@@ -272,9 +285,11 @@ nameJ.oninput = function () {
 
 // event listener on the "Register" submit button
 $("form").on("submit", (function(e) {
+        e.preventDefault();
   let validationError = validateAllForms();
     if (validationError) {
       e.preventDefault();
+      console.log("Validaion failed.");
       return false;
   }
 }));
