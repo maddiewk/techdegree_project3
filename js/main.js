@@ -128,15 +128,13 @@ $(".activities :checkbox").on("change", function() {
 const creditCard = $("#credit-card");
 const payPal = $("p:contains('PayPal')");
 const bitCoin = $("p:contains('Bitcoin')");
+
 // display credit card option as default
 $("#payment option[value='credit card']").attr("selected", true);
-// first, hide everything but the credit card option
 payPal.hide();
 bitCoin.hide();
 
-// when the "Bitcoin" option is selected that info is shown and the rest hidden
-// when "PayPal" option is selected that info is shown and the rest hidden
-
+// show only one payment option at a time
 $("#payment").change(function() {
   let selectedPayment = $("#payment option:selected").text();
 
@@ -160,10 +158,11 @@ $("#payment").change(function() {
 })
 
 /* =========================> Form Validation <======================= */
+
 // name field can't be blank
 function nameInput() {
-  $("#name-error").remove();
   let nameIn = $("#name").val();
+  $("#name-error").remove();
 
   if (nameIn === "") {
     nameField.addClass('error').css("border-color", "red");
@@ -177,10 +176,10 @@ function nameInput() {
 
 // email must be correctly formatted
 function invalidEmail() {
-  $("#email-error").remove();
-  $("#regex").remove();
   let valid = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/;
   let emailInput = $("#mail").val();
+  $("#email-error").remove();
+  $("#regex").remove();
 
   if (emailInput === "") {
     emailField.addClass('error').css("border-color", "red");
@@ -190,15 +189,15 @@ function invalidEmail() {
     emailField.addClass("error").css("border-color", "red");
   } else  {
     emailField.css("border-color","");
-    $("#email-error").hide();
-    $("#regex").hide();
+    $("#email-error").remove();
+    $("#regex").remove();
     emailField.removeClass('error');
   }
 }
 // must select at least one checkbox from the Activities portion
 function validateCheckbox() {
-  $("#checkbox-error").remove();
   let n = $("input:checked").length;
+  $("#checkbox-error").remove();
 
   if (n === 0) {
     $(".activities legend").after("<div class='error' id='checkbox-error' style='color:red;'>Please choose at least one activity</div>");
@@ -206,13 +205,14 @@ function validateCheckbox() {
     $("#checkbox-error").remove();
   }
 }
+
 // set up error messages for payment field
 const $ccMessage = "<div class='error' id='cc-error' style='color:red;'>Please enter a valid credit card number</div>";
 const $zipMessage = "<div class='error' id='zip-error' style='color:red;'>Please enter your zip code</div>";
 const $cvvMessage = "<div class='error' id='cvv-error' style='color:red;'>Please enter your CVV</div>";
 const creditCardOption = $("#payment option[value='credit card']");
 
-//validate payment information fields
+//validate credit card information fields
 function validateCreditCard() {
   $("#cc-error").remove();
 
@@ -221,7 +221,7 @@ function validateCreditCard() {
       $("#credit-card").before($ccMessage);
     } else {
       $("#cc-num").removeClass("error").css("border-color", "");
-      $("#cc-error").hide();
+      $("#cc-error").remove();
     }
   }
 
@@ -233,7 +233,7 @@ function validateZip () {
       $("#credit-card").before($zipMessage);
     } else {
       $("#zip").removeClass("error").css("border-color", "");
-      $("#zip-error").hide();
+      $("#zip-error").remove();
     }
   }
 
@@ -245,21 +245,21 @@ function validateCVV () {
       $("#credit-card").before($cvvMessage);
     } else {
       $("#cvv").removeClass("error").css("border-color", "");
-      $("#cvv-error").hide();
+      $("#cvv-error").remove();
     }
   }
 
-// create one function that calls all functions created above
+// create function that calls all validation functions
 // if any errors are present in the form, return true
 function validateAllForms(e) {
-  $("#button-error").remove();
-
   nameInput();
   invalidEmail();
   validateCheckbox();
   validateCreditCard();
   validateZip();
   validateCVV();
+
+  $("#button-error").remove();
 
   let allDivs = document.querySelectorAll("div");
   for (let i = 0; i < allDivs.length; i += 1) {
@@ -269,6 +269,7 @@ function validateAllForms(e) {
     }
   }
 }
+
 // validate name field and email field in real time
 const nameJ = document.getElementById("name");
 nameJ.oninput = function () {
@@ -281,6 +282,7 @@ mailInput.oninput = function () {
 
 // event listener on the "Register" submit button
 $("form").on("submit", function(e) {
+  
   let validationError = validateAllForms();
     if (validationError) {
       e.preventDefault();
