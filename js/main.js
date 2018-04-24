@@ -256,6 +256,8 @@ function validateCVV () {
 // create one function that calls all functions created above
 // if any errors are present in the form, return true
 function validateAllForms(e) {
+  $("#button-error").remove();
+
   nameInput();
   invalidEmail();
   validateCheckbox();
@@ -266,6 +268,7 @@ function validateAllForms(e) {
   let allDivs = document.querySelectorAll("div");
   for (let i = 0; i < allDivs.length; i += 1) {
     if (allDivs[i].className === "error") {
+      $("button").after("<div class='error' id='button-error' style='color:red;'>Please fill in all required fields.</div>");
       return true;
     }
   }
