@@ -11,6 +11,7 @@ nameField.focus();
 
 // hide the "other-title" text field
 otherTextField.hide();
+
 // if "other" option is selected, show text field
 $("#title").change(function() {
   var $selected = $("#title option:selected").text();
@@ -21,22 +22,17 @@ $("#title").change(function() {
   }
 });
 
-// function to hide or display color menus depending on user's selection
-
-$("#color option[value='cornflowerblue']").remove();
-$("#color option[value='darkslategrey']").remove();
-$("#color option[value='gold']").remove();
-$("#color option[value='tomato']").remove();
-$("#color option[value='steelblue']").remove();
-$("#color option[value='dimgrey']").remove();
-
+// hide color menu until a theme is chosen
 $("#colors-js-puns").hide();
+
+// hide or display color menus depending on user's selection
 $("#design").change(function() {
 // variables to hold text of each design option and the selected text
   const puns = $("#design option[value='js puns']").text();
   const heart = $("#design option[value='heart js']").text();
   let $selectColor = $("#design option:selected").text();
 
+  // remove all colors so they can be appended in the correct grouping
   $("#color").children().remove();
 
   if( $selectColor === puns ) {
@@ -56,10 +52,9 @@ $("#design").change(function() {
   }
 });
 
-// function to disable or enable activities if they conflict with each other as the user selects and deselects
-
+// disable or enable activities if they conflict with each other
   $(".activities :checkbox").change(function() {
-  // variables holding each activity that is conflicts with another
+  // variables holding each activity that conflicts with another
     const jsFrameworksBox = $(".activities input:eq(1)");
     const jsFrameworksText = $(".activities label:eq(1)");
     const expressBox = $(".activities input:eq(3)");
@@ -100,11 +95,11 @@ $("#design").change(function() {
       librariesText.css("color", "black");
     }
   });
-// function to calculate total cost of each activity
+
+// calculate total cost of each activity
 let totalPrice = 0;
 
 function calculateTotal(currentCheckbox) {
-
   const isChecked = currentCheckbox.is(':checked');
   const checkedLabel = currentCheckbox.parent();
   const labelText = checkedLabel.text();
@@ -121,6 +116,7 @@ function calculateTotal(currentCheckbox) {
     $(".activities").append("<legend id='total'>Total: $" + totalPrice + "</legend>");
   }
 }
+
 // when activities are selected, the calculateTotal function is called
 $(".activities :checkbox").on("change", function() {
   calculateTotal($(this));
@@ -128,7 +124,7 @@ $(".activities :checkbox").on("change", function() {
 
 /* ====================> Payment Section <======================= */
 
-// variables for Bitcoin and PayPal select input options
+// variables for Bitcoin and PayPal select options
 const creditCard = $("#credit-card");
 const payPal = $("p:contains('PayPal')");
 const bitCoin = $("p:contains('Bitcoin')");
