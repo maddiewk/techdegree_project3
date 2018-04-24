@@ -176,7 +176,7 @@ function nameInput() {
 
 // email must be correctly formatted
 function invalidEmail() {
-  let valid = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/;
+  let valid = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let emailInput = $("#mail").val();
   $("#email-error").remove();
   $("#regex").remove();
@@ -282,7 +282,7 @@ mailInput.oninput = function () {
 
 // event listener on the "Register" submit button
 $("form").on("submit", function(e) {
-  
+
   let validationError = validateAllForms();
     if (validationError) {
       e.preventDefault();
