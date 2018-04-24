@@ -210,20 +210,11 @@ function validateCheckbox() {
     $("#checkbox-error").remove();
   }
 }
-// set up error message for payment field
+// set up error messages for payment field
 const $ccMessage = "<div class='error' id='cc-error' style='color:red;'>Please enter a valid credit card number</div>";
 const $zipMessage = "<div class='error' id='zip-error' style='color:red;'>Please enter your zip code</div>";
 const $cvvMessage = "<div class='error' id='cvv-error' style='color:red;'>Please enter your CVV</div>";
-
-// $("#credit-card").before($ccMessage);
 const creditCardOption = $("#payment option[value='credit card']");
-
-// $("#credit-card").before($ccMessage);
-// $("#credit-card").before($zipMessage);
-// $("#credit-card").before($cvvMessage);
-// $("#cc-error").remove();
-// $("#zip-error").remove();
-// $("#cvv-error").remove();
 
 //validate payment information fields
 function validateCreditCard() {
@@ -263,6 +254,7 @@ function validateCVV () {
   }
 
 // create one function that calls all functions created above
+// if any errors are present in the form, return true
 function validateAllForms(e) {
   nameInput();
   invalidEmail();
@@ -277,7 +269,6 @@ function validateAllForms(e) {
       return true;
     }
   }
-
 }
 // validate name field and email field in real time
 const nameJ = document.getElementById("name");
@@ -288,6 +279,7 @@ const mailInput = document.getElementById("mail");
 mailInput.oninput = function () {
   invalidEmail();
 }
+
 // event listener on the "Register" submit button
 $("form").on("submit", function(e) {
   let validationError = validateAllForms();
@@ -295,7 +287,4 @@ $("form").on("submit", function(e) {
       e.preventDefault();
       return false;
     }
-  // else {
-  //   console.log("No errors");
-  // }
 });
