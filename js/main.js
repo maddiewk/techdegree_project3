@@ -16,7 +16,7 @@ otherTextField.hide();
 $("#title").change(function() {
   var $selected = $("#title option:selected").text();
     if( $selected === "Other") {
-      otherTextField.show();
+      otherTextField.show().focus();
   } else {
       otherTextField.hide();
   }
