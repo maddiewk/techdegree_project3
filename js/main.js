@@ -208,17 +208,17 @@ function validateCheckbox() {
 
 // set up error messages for payment field
 const $ccMessage = "<div class='error' id='cc-error' style='color:red;'>Please enter a valid credit card number</div>";
-const $zipMessage = "<div class='error' id='zip-error' style='color:red;'>Please enter your zip code</div>";
-const $cvvMessage = "<div class='error' id='cvv-error' style='color:red;'>Please enter your CVV</div>";
+const $zipMessage = "<div class='error' id='zip-error' style='color:red;'>Please enter zip</div>";
+const $cvvMessage = "<div class='error' id='cvv-error' style='color:red;'>Please enter CVV</div>";
 const creditCardOption = $("#payment option[value='credit card']");
 
 //validate credit card information fields
 function validateCreditCard() {
   $("#cc-error").remove();
 
-    if ((cardNumber.val().length < 13 || cardNumber.val().length > 16) || (isNaN(cardNumber.val())) && (creditCardOption.is(':selected'))) {
+    if ( (cardNumber.val().length < 13 || cardNumber.val().length > 16) || (isNaN(cardNumber.val())) ) {
       $("#cc-num").addClass("error").css("border-color", "red");
-      $("#credit-card").before($ccMessage);
+      $("label[for='cc-num']").after($ccMessage);
     } else {
       $("#cc-num").removeClass("error").css("border-color", "");
       $("#cc-error").remove();
@@ -228,9 +228,9 @@ function validateCreditCard() {
 function validateZip () {
   $("#zip-error").remove();
 
-    if (zipInput.val().length != 5 || isNaN(zipInput.val()) && (creditCardOption.is(':selected'))) {
+    if (zipInput.val().length != 5 || isNaN(zipInput.val())) {
       $("#zip").addClass("error").css("border-color", "red");
-      $("#credit-card").before($zipMessage);
+      $("label[for='zip']").after($zipMessage);
     } else {
       $("#zip").removeClass("error").css("border-color", "");
       $("#zip-error").remove();
@@ -240,9 +240,9 @@ function validateZip () {
 function validateCVV () {
   $("#cvv-error").remove();
 
-    if ((cVVInput.val().length != 3 || isNaN(cVVInput.val()) && (creditCardOption.is(':selected')))) {
+    if ((cVVInput.val().length != 3 || isNaN(cVVInput.val()))) {
       $("#cvv").addClass("error").css("border-color", "red");
-      $("#credit-card").before($cvvMessage);
+      $("label[for='cvv']").after($cvvMessage);
     } else {
       $("#cvv").removeClass("error").css("border-color", "");
       $("#cvv-error").remove();
@@ -255,10 +255,11 @@ function validateAllForms(e) {
   nameInput();
   invalidEmail();
   validateCheckbox();
+  if ($("#payment option[value='credit card']").is(":selected")) {
   validateCreditCard();
   validateZip();
   validateCVV();
-
+}
   $("#button-error").remove();
 
   let allDivs = document.querySelectorAll("div");
