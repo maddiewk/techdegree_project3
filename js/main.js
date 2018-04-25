@@ -216,7 +216,7 @@ const creditCardOption = $("#payment option[value='credit card']");
 function validateCreditCard() {
   $("#cc-error").remove();
 
-    if (((cardNumber.val().length < 13 || cardNumber.val().length > 16) || (isNaN(parseInt(cardNumber.val())))) && (creditCardOption.is(':selected'))) {
+    if ((cardNumber.val().length < 13 || cardNumber.val().length > 16) || (isNaN(cardNumber.val())) && (creditCardOption.is(':selected'))) {
       $("#cc-num").addClass("error").css("border-color", "red");
       $("#credit-card").before($ccMessage);
     } else {
@@ -228,7 +228,7 @@ function validateCreditCard() {
 function validateZip () {
   $("#zip-error").remove();
 
-    if ((zipInput.val().length != 5 || isNaN(parseInt(zipInput.val()))) && (creditCardOption.is(':selected'))) {
+    if (zipInput.val().length != 5 || isNaN(zipInput.val()) && (creditCardOption.is(':selected'))) {
       $("#zip").addClass("error").css("border-color", "red");
       $("#credit-card").before($zipMessage);
     } else {
@@ -240,7 +240,7 @@ function validateZip () {
 function validateCVV () {
   $("#cvv-error").remove();
 
-    if ((cVVInput.val().length != 3 || isNaN(parseInt(cVVInput.val()))) && (creditCardOption.is(':selected'))) {
+    if ((cVVInput.val().length != 3 || isNaN(cVVInput.val()) && (creditCardOption.is(':selected')))) {
       $("#cvv").addClass("error").css("border-color", "red");
       $("#credit-card").before($cvvMessage);
     } else {
